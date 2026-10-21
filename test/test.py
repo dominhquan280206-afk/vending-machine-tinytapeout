@@ -19,7 +19,7 @@ async def reset_dut(dut):
     dut.rst_n.value = 1
 
     await RisingEdge(dut.clk)
-    await Timer(1, units="ns")
+    await Timer(100, units="ns")
 
 
 async def apply_input(dut, value):
@@ -31,7 +31,7 @@ async def apply_input(dut, value):
     dut.ui_in.value = value
 
     await RisingEdge(dut.clk)
-    await Timer(1, units="ns")
+    await Timer(100, units="ns")
 
 
 async def clear_input(dut):
@@ -230,7 +230,7 @@ async def test_vending_machine(dut):
     dut.rst_n.value = 1
 
     await RisingEdge(dut.clk)
-    await Timer(1, units="ns")
+    await Timer(100, units="ns")
 
     # Sau reset chỉ mới bỏ 2k -> chưa đủ mua
     await apply_input(dut, 0b00000010)
@@ -254,7 +254,7 @@ async def test_vending_machine(dut):
     dut.ui_in.value = 0b00000010
 
     await RisingEdge(dut.clk)
-    await Timer(1, units="ns")
+    await Timer(100, units="ns")
 
     # Xóa input trước khi bật lại ena
     await FallingEdge(dut.clk)
